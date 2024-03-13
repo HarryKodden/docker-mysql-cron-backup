@@ -10,7 +10,7 @@ docker container run -d \
        --env MYSQL_PASS=my_password \
        --link mysql
        --volume /path/to/my/backup/folder:/backup
-       fradelg/mysql-cron-backup
+       harrykodden/mysql-cron-backup
 ```
 
 ### Healthcheck
@@ -65,7 +65,7 @@ services:
     restart: unless-stopped
 
   mysql-cron-backup:
-    image: fradelg/mysql-cron-backup
+    image: harrykodden/mysql-cron-backup
     depends_on:
       - mariadb
     volumes:
@@ -133,7 +133,7 @@ services:
 
   backup:
     build: .
-    image: fradelg/mysql-cron-backup
+    image: harrykodden/mysql-cron-backup
     depends_on:
       - mariadb
     volumes:
@@ -175,7 +175,7 @@ To restore a database from a certain backup you may have to specify the database
 
 ```YAML
 mysql-cron-backup:
-    image: fradelg/mysql-cron-backup
+    image: harrykodden/mysql-cron-backup
     command: "/restore.sh /backup/201708060500.${DATABASE_NAME}.sql.gz"
     depends_on:
       - mariadb
@@ -202,7 +202,7 @@ Set `EXIT_BACKUP` to automatic create a last backup on shutdown.
 
 ```yaml
   mysql-cron-backup:
-    image: fradelg/mysql-cron-backup
+    image: harrykodden/mysql-cron-backup
     depends_on:
       - mariadb
     volumes:
